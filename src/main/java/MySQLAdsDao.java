@@ -16,7 +16,7 @@ public class MySQLAdsDao implements Ads {
                 Config.getPassword()
             );
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error establishing database connection!", e);
         }
     }
 
@@ -40,7 +40,7 @@ public class MySQLAdsDao implements Ads {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Could not retrieve the ads!", e);
         }
 
         return ads;
@@ -63,10 +63,12 @@ public class MySQLAdsDao implements Ads {
 
             if(resultSet.next()) {
                 newId = resultSet.getLong(1);
+            } else {
+                throw new RuntimeException("Could not retrieve new Ad ID after insert!");
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Could not insert the ad!", e);
         }
 
         return newId;
