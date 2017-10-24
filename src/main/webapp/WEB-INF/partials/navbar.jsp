@@ -11,7 +11,7 @@
                 <li><a href="/register">Register</a></li>
             </c:if>
             <c:if test="${sessionScope.user != null}">
-                <li><a href="/profile"><c:out value="${sessionScope.user.getUsername()}" /></a></li>
+                <li><a href="/profile"><c:out value="${sessionScope.user.username}" /></a></li>
                 <li><a href="/logout">Logout</a></li>
             </c:if>
         </ul>
